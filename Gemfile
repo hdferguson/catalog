@@ -12,6 +12,9 @@ gem 'rails', '~> 5.0.1'
 gem 'sqlite3'
 gem 'carrierwave'
 
+#react
+gem 'react_on_rails', '~>6'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
