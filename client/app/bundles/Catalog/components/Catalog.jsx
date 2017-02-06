@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import BookList from './BookList';
+import axios from 'axios';
 
 const Catalog = React.createClass ({
   getInitialState: function() {
@@ -7,8 +8,18 @@ const Catalog = React.createClass ({
   },  
 
   componentDidMount: function() {
-        this.setState({ books: this.props.catalog });
-  },
+    var self = this;
+
+    axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+    axios.get('/')
+        .then(function (response) {
+            console.log(response.data);
+            self.setState({ books: response.data })
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+},
 
   render() {
     return (
