@@ -9,6 +9,10 @@
     color: #226;
     border-bottom: 3px dotted #77d;
   }
+  
+  th.sortable {
+    cursor: pointer;
+  }
 
   /* An entry in the store catalog */
   .entry {

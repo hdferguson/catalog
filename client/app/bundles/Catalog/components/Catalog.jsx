@@ -4,7 +4,10 @@ import axios from 'axios';
 
 const Catalog = React.createClass ({
   getInitialState: function() {
-        return { books: [] };
+        return {  books: [], 
+              sort: "popularity",
+              order: "asc" 
+           };
   },  
 
   componentDidMount: function() {
@@ -19,14 +22,25 @@ const Catalog = React.createClass ({
         .catch(function (error) {
             console.log(error);
         });
-},
+  },
 
+  handleSortColumn: function(name, order) {
+      if (this.state.sort != name) {
+        order = 'asc';
+      }
+
+      this.setState({ sort: name, order: order });
+  },
+  
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-              <BookList books={this.state.books}/>
+              <BookList   books={this.state.books}
+                          sort ={this.state.sort}
+                          order={this.state.order}
+                          handleSortColumn={this.handleSortColumn}/>
           </div>
         </div>
       </div>
