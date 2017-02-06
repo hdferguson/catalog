@@ -2,7 +2,8 @@ class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
-
+  skip_before_filter :verify_authenticity_token
+  
   # GET /line_items
   # GET /line_items.json
   def index
@@ -35,7 +36,7 @@ class LineItemsController < ApplicationController
         product.popularity = product.popularity + 1;
         product.update_attributes(:popularity => product.popularity)
         format.html { redirect_to @line_item.cart }
-        format.json { render :show, status: :created, location: @line_item }
+        format.json { redirect_to cart_path(@line_item.cart)}
       else
         format.html { render :new }
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
