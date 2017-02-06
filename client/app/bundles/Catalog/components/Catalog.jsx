@@ -25,12 +25,24 @@ const Catalog = React.createClass ({
   },
 
   handleSortColumn: function(name, order) {
-      if (this.state.sort != name) {
+    if (this.state.sort != name) {
         order = 'asc';
-      }
+    }
 
-      this.setState({ sort: name, order: order });
-  },
+    var self = this;
+
+    axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+    axios.get('/', {params: {sort_by: name, order: order }})
+      .then(function (response) {
+        console.log(response.data);
+        self.setState({ books: response.data, sort: name, order: order });
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert('Cannot sort events: ', error);
+    });
+
+},
   
   render() {
     return (

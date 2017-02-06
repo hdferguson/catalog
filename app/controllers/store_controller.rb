@@ -24,7 +24,7 @@ class StoreController < ApplicationController
   end
   
   private 
-    def sortby
+    def sort_by
        %w(title
           price
           popularity).include?(params[:sortby]) ? params[:sort_by] : 'popularity'
