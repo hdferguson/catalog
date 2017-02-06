@@ -29,6 +29,11 @@ const Catalog = React.createClass ({
         });
   },
   
+  // Add a new function to handle "Add to Cart"
+  // This function will be modified later.
+  handleAddToCart: function(id){
+    console.log(id);
+  },
 
   handleSortColumn: function(name, order) {
     if (this.state.sort != name) {
@@ -64,7 +69,8 @@ const Catalog = React.createClass ({
               <BookList   books={this.state.books}
                           sort ={this.state.sort}
                           order={this.state.order}
-                          handleSortColumn={this.handleSortColumn}/>
+                          handleSortColumn={this.handleSortColumn}
+                          handleAddToCart={this.handleAddToCart} />
           </div>
         </div>
       </div>
