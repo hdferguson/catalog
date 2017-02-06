@@ -23,6 +23,11 @@ class StoreController < ApplicationController
     end
   end
   
+  def search
+      products = Product.where("title LIKE '%#{params[:query]}%'")
+      render json: products
+  end
+  
   private 
     def sort_by
        %w(title
@@ -32,4 +37,7 @@ class StoreController < ApplicationController
     def order
        %w(asc desc).include?(params[:order]) ? params[:order] : 'asc'
     end
+    
+    
+    
 end

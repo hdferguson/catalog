@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import BookList from './BookList';
 import axios from 'axios';
+import SearchForm from './search_form';
 
 const Catalog = React.createClass ({
   getInitialState: function() {
@@ -8,7 +9,11 @@ const Catalog = React.createClass ({
               sort: "popularity",
               order: "asc" 
            };
-  },  
+  },
+  
+  handleSearch: function(books) {
+    this.setState({ books: books });
+  },
 
   componentDidMount: function() {
     var self = this;
@@ -23,6 +28,7 @@ const Catalog = React.createClass ({
             console.log(error);
         });
   },
+  
 
   handleSortColumn: function(name, order) {
     if (this.state.sort != name) {
@@ -43,10 +49,16 @@ const Catalog = React.createClass ({
     });
 
 },
+
   
   render() {
     return (
       <div className="container">
+        <div className="row">
+            <div className="col-md-12">
+              <SearchForm handleSearch={this.handleSearch} />
+            </div>
+        </div>
         <div className="row">
           <div className="col-md-12">
               <BookList   books={this.state.books}
