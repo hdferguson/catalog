@@ -32,7 +32,7 @@ class StoreController < ApplicationController
     def sort_by
        %w(title
           price
-          popularity).include?(params[:sortby]) ? params[:sort_by] : 'popularity'
+          popularity).include?(params[:sort_by]) ? params[:sort_by] : 'popularity'
     end
     def order
        %w(asc desc).include?(params[:order]) ? params[:order] : 'asc'
