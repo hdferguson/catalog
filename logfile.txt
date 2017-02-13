@@ -1,0 +1,107 @@
+commit d984e4a05c92659b631e833709979c42498efb31
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 23:01:48 2017 +0000
+
+    Fixing heroku sorting problem
+
+commit e928e055318c76505972a4818d22c20149b76ba0
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 22:46:02 2017 +0000
+
+    Updated production and sqlite3 for heroku
+
+commit 23e0418045ca0aeada2ec8d7ef5c67ff1659fe78
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 22:27:22 2017 +0000
+
+    Done with project 4 except for heroku
+
+commit e86836dbe5ed086b856ca7b4a710dc25884eff10
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 22:13:55 2017 +0000
+
+    First part of 2.5 works
+
+commit 411edc64fe2032bfbfe70b1ce8c9afe6a8975e40
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 22:00:48 2017 +0000
+
+    Did 2.4 and it works now
+
+commit c0aee4ad3f06062d18cfdb87666d7fac695fe78d
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 21:08:25 2017 +0000
+
+    Done with 2.3 and everything works.
+
+commit 37c714ca9ab3efefa1b82870667feea371db011a
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 20:23:48 2017 +0000
+
+    Did 2.3.2
+
+commit 7b5664cf5db01aebc4f4d6a34ac9a34e38219cdb
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 18:44:58 2017 +0000
+
+    Did 2.3.1
+
+commit bfcc23b64472588c894a28b2f9810b8382f02bff
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 18:23:41 2017 +0000
+
+    Did part 2.2
+
+commit 0a7131a49edab24ead1a50966b812ad574b95f2f
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 08:05:50 2017 +0000
+
+    Did 2.1 and it works
+
+commit 85c0db5747b57d584098d33047db038090ba5a94
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Mon Feb 6 04:12:18 2017 +0000
+
+    Did E from book.
+
+commit 8c2cdbad91d7c55643269ea3af740799aa7a1e7c
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 1 23:31:02 2017 +0000
+
+    done with part2 for proj3
+
+commit 1832be5a9b7f0413c6ef76af4762da9c154d5dea
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 1 22:49:43 2017 +0000
+
+    Added rails gem
+
+commit 14ad3ae4c26ffb357ffb74cc5fb170cc80953cac
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 1 22:45:19 2017 +0000
+
+    Did playtime and popularity
+
+commit d1b4d40f263004dc95cac0ac164f328a3ac326b1
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 1 04:53:57 2017 +0000
+
+    Added carrierwave
+
+commit 77804e5af055b3ba1d1c9d443d07c012d2c13f0d
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 1 02:57:34 2017 +0000
+
+    Got cart working
+
+commit 04fdc21c6d67cfd93d89549c6266ca0b73a8d176
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Tue Jan 31 23:52:59 2017 +0000
+
+    done with a-c
+
+commit 7de52352dbb107ae9b6bec3eebd9f55cc0636d80
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Tue Jan 31 21:36:59 2017 +0000
+
+    In part b
