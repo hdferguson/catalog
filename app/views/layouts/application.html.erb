@@ -14,6 +14,7 @@
       <span class="title"><%= @page_title %></span>
     </div>
     <div id= "columns">
+      <% if @spa.nil? %>
       <div id= "side">
         <div id="cart">
             <% if @cart %>
@@ -31,6 +32,7 @@
           <li><a href="http://www..../contact">Contact</a></li>
         </ul>
       </div>
+      <% end %>
       <div id="main">
         <%= yield %>
       </div>
