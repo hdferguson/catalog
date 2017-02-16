@@ -4,87 +4,105 @@ import axios from 'axios';
 
 const Cart = React.createClass ({
   getInitialState: function() {
-    return {  
-        // states of Cart
-        lineItems: [],
-        total_price: 0
+    return {  total_price: 0,
+              line_items: [], 
+              id: 0
     };
   },
 
  componentDidMount: function() {
-        // send an HTTP get message to
-        // request json data from the server at the url 
-        // '/carts/'+this.props.id
-        // and update the states with it
-        var self = this;
-
-    axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-    axios.get('/carts/' + this.props.id)
-        .then(function (response) {
-            //console.log(response.data);
-            self.setState({ lineItems: response.data.line_items, total_price: response.data.total_price });
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-  },
-
-  handleRemoveFromCart: function(id){
-        // send an HTTP patch message to
-        // request json data from the server at the url 
-        // '/line_items/'+id+'/decrement'
-        // and update the states with it
     var self = this;
 
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-    axios.post('/line_items'+ id+ '/decrease')
-        .then(function (response) {
-            console.log(response);
-            self.refs.cart.handleRemoveFromCart(response.data);
-         })
-        .catch(function (error) {
-            console.log(error);
-            alert('Cannot remove cart: ', error);
+    axios.get('/carts/'+this.props.id)
+      .then(function (response) {
+        console.log(response.data);
+        self.setState({ id: self.props.id });
+        self.setState({ total_price: response.data.total_price });
+        self.setState({ line_items: response.data.line_items });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  },
+
+  handleRemoveFromCart: function(id){
+    var self = this;
+
+    axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+    axios.put('/line_items/'+id+'/decrease')
+      .then(function (response) {
+        console.log(response.data);
+        self.setState({ total_price: response.data.total_price });
+        self.setState({ line_items: response.data.line_items });
+
+        // window.location = response.headers.location;
+      })
+      .catch(function (error) {
+        // console.log(error);
+        alert('Cannot remove line item: ', error);
     });
+
   },
 
 
   handleEmptyCart: function(){
-        // send an HTTP delete message to
-        // request json data from the server at the url 
-        // '/carts/'+this.props.id
-        // and update the states with it
-  
-      var self = this;
+    var self = this;
 
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-    axios.post('/carts/'+ this.props.id, 'destroy')
-        .then(function (response) {
-            console.log(response);
-            self.refs.cart.handleEmptyCart(response.data);
-         })
-        .catch(function (error) {
-            console.log(error);
-            alert('Cannot empty cart: ', error);
+    axios.delete('/carts/'+this.state.id)
+      .then(function (response) {
+        console.log(response.data);
+        self.setState({ id: 0 });
+        self.setState({ total_price: response.data.total_price });
+        self.setState({ line_items: response.data.line_items });
+
+        // window.location = response.headers.location;
+      })
+      .catch(function (error) {
+        // console.log(error);
+        alert('Cannot empty cart: ', error);
     });
+
   },
 
+  handleCheckout: function(){
+    var self = this;
+
+    axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
+    axios.get('/orders/new')
+      .then(function (response) {
+        console.log(response.data);
+
+        window.location = response.data.redirect_url;
+      })
+      .catch(function (error) {
+        // console.log(error);
+        alert('Cannot check out the order: ', error);
+    });
+
+  },  
+
   handleAddToCart: function(cart){
-        // update the states with "cart"
-        // that comes from the line "self.refs.cart.handleAddToCart(response.data);"
-        // in the "Cart" component
-        var self = this;
-        self.setState({lineItems: cart.line_items, total_price: cart.total_price})
+    // console.log(cart);
+    this.setState({ id: cart.id});
+    this.setState({ total_price: cart.total_price});
+    this.setState({ line_items: cart.line_items});
   },
+
   render: function() {
     if (this.state.total_price != 0) {
       return(
         <div className="carts">
           <h2>Your Cart</h2>
-          <LineItems lineItems={this.state.lineItems}
-                total_price={this.state.total_price}
-                handleRemoveFromCart={this.handleRemoveFromCart}/>
-          
+          <LineItems total_price={this.state.total_price}
+                     line_items={this.state.line_items} 
+                     handleRemoveFromCart={this.handleRemoveFromCart} />
+          <a className="btn btn-primary btn-xs"
+             onClick={this.handleEmptyCart} >
+            Empty Cart
+          </a>
+
         </div>
       )
     }

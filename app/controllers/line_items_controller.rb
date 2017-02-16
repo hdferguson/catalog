@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:create, :decrease]
-  before_action :set_line_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_line_item, only: [:show, :edit, :update, :destroy, :decrease]
   skip_before_filter :verify_authenticity_token
   
   # GET /line_items
@@ -13,23 +13,19 @@ class LineItemsController < ApplicationController
   def decrease
     @cart = Cart.find(session[:cart_id])
     @line_item = LineItem.find_by_id(params[:id])
-    @product = @line_item.product
+    @product = Product.find(@line_item.product)
     @product.popularity = @product.popularity - 1;
     @product.update_attributes(:popularity => @product.popularity)
-    if ((@try==false))
-          @products= Product.all 
-          ActionCable.server.broadcast 'products',html: render_to_string('store/index', layout: false)
-    end
     respond_to do |format|
       if @line_item.quantity > 1
         @line_item.update_attribute(:quantity, @line_item.quantity -= 1)
         format.html { redirect_to store_index_url }
-        format.js   { @current_item = @line_item }
+        format.js   { @current_item = @line_item  }
         format.json {  }
       else
         @line_item.destroy
         format.html { render action: "edit" }
-        format.js   { @current_item = @line_item }
+        format.js   { render 'decrease.js.erb' if !@cart.line_items.present?}
         format.json { render json: @line_item.errors, status: :unprocessable_entity }
       end
     end
@@ -60,12 +56,8 @@ class LineItemsController < ApplicationController
         session[:counter]=0
         product.popularity = product.popularity + 1;
         product.update_attributes(:popularity => product.popularity)
-        if ((@try==false))
-          @products= Product.all 
-          ActionCable.server.broadcast 'products',html: render_to_string('store/index', layout: false)
-        end
-        format.html { }
-        format.js   { @current_item = @line_item }
+        format.html { redirect_to store_index_url }
+        #format.js   { @current_item = @line_item }
         format.json { }
       else
         format.html { render :new }
