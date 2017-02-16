@@ -26,7 +26,7 @@ class LineItemsController < ApplicationController
         @line_item.destroy
         format.html { render action: "edit" }
         format.js   { render 'decrease.js.erb' if !@cart.line_items.present?}
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.json {  }
       end
     end
   end
