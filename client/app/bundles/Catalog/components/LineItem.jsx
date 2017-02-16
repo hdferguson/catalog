@@ -10,7 +10,8 @@ const LineItem = React.createClass ({
 
   handleRemoveFromCart: function(e) {   
     // call handleRemoveFromCart in LineItems to handle it
-    this.props.handleRemoveFromCart(this.props.listItem.id);
+    this.props.handleRemoveFromCart(this.props.lineItem.id);
+    
   },
 
   render: function() {

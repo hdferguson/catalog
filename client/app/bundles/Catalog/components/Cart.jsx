@@ -37,7 +37,7 @@ const Cart = React.createClass ({
     var self = this;
 
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-    axios.post('/line_items', {line_item_id: id}, '/decrement')
+    axios.post('/line_items'+ id+ '/decrease')
         .then(function (response) {
             console.log(response);
             self.refs.cart.handleRemoveFromCart(response.data);
@@ -58,7 +58,7 @@ const Cart = React.createClass ({
       var self = this;
 
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-    axios.post('/carts/'+ this.props.id)
+    axios.post('/carts/'+ this.props.id, 'destroy')
         .then(function (response) {
             console.log(response);
             self.refs.cart.handleEmptyCart(response.data);
@@ -82,7 +82,8 @@ const Cart = React.createClass ({
         <div className="carts">
           <h2>Your Cart</h2>
           <LineItems lineItems={this.state.lineItems}
-                total_price={this.state.total_price}/>
+                total_price={this.state.total_price}
+                handleRemoveFromCart={this.handleRemoveFromCart}/>
           
         </div>
       )
