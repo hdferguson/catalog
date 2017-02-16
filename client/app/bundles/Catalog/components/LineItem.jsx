@@ -17,7 +17,7 @@ const LineItem = React.createClass ({
 
     return(
       <tr className="entry">
-        <td>{this.props.lineItem.quantity}X</td>
+        <td>{this.props.lineItem.quantity}</td>
     <td>{this.props.lineItem.title}</td>
     <td>${this.props.lineItem.total_price}</td>
     <td><a className="btn btn-primary btn-xs"

@@ -16,17 +16,16 @@ class LineItemsController < ApplicationController
     @product = @line_item.product
     @product.popularity = @product.popularity - 1;
     @product.update_attributes(:popularity => @product.popularity)
-    @line_item.update_attribute(:quantity, @line_item.quantity -= 1)
-    if (!(@spa.nil?))
+    if ((@try==false))
           @products= Product.all 
-          ActionCable.server.broadcast 'products',html: render_to_string('store/index?spa', layout: false)
+          ActionCable.server.broadcast 'products',html: render_to_string('store/index', layout: false)
     end
     respond_to do |format|
       if @line_item.quantity > 1
-        
+        @line_item.update_attribute(:quantity, @line_item.quantity -= 1)
         format.html { redirect_to store_index_url }
         format.js   { @current_item = @line_item }
-        format.json { head :ok }
+        format.json {  }
       else
         @line_item.destroy
         format.html { render action: "edit" }
@@ -61,9 +60,9 @@ class LineItemsController < ApplicationController
         session[:counter]=0
         product.popularity = product.popularity + 1;
         product.update_attributes(:popularity => product.popularity)
-        if (!(@spa.nil?))
+        if ((@try==false))
           @products= Product.all 
-          ActionCable.server.broadcast 'products',html: render_to_string('store/index?spa', layout: false)
+          ActionCable.server.broadcast 'products',html: render_to_string('store/index', layout: false)
         end
         format.html { }
         format.js   { @current_item = @line_item }

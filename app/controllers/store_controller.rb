@@ -17,7 +17,10 @@ class StoreController < ApplicationController
         format.html {
           if (params[:spa] && params[:spa] == "true")
               @spa = true
+              @try=true
               render 'index_spa'
+            else 
+              @try = false
               # the else case below is by default
               # else
               #    render 'index'

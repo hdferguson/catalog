@@ -58,7 +58,7 @@ const Cart = React.createClass ({
       var self = this;
 
     axios.defaults.headers.common['X-Requested-With'] = "XMLHttpRequest";
-    axios.post('/carts'+ this.props.id)
+    axios.post('/carts/'+ this.props.id)
         .then(function (response) {
             console.log(response);
             self.refs.cart.handleEmptyCart(response.data);
