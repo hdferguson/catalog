@@ -23,7 +23,7 @@ const Catalog = React.createClass ({
     axios.get('/')
         .then(function (response) {
             console.log(response.data);
-            self.setState({ books: response.data })
+            self.setState({ books: response.data });
         })
         .catch(function (error) {
             console.log(error);
