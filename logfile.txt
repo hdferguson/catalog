@@ -1,3 +1,15 @@
+commit 10d4a5c74646ca8d3eb74de175f55e70abea1ec2
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Thu Feb 16 23:37:25 2017 +0000
+
+    Done (error was because json for else was suppose to be empty)
+
+commit d2a496322039c5d4f87a3049d0eb38cbfd1edc90
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Thu Feb 16 23:31:52 2017 +0000
+
+    pop ajax done and part3 done except for error with decrease
+
 commit 10eac4360c60b6c1543d32922bc8f6983489498d
 Author: hdferguson <hdferguson@valdosta.edu>
 Date:   Thu Feb 16 18:12:45 2017 +0000
