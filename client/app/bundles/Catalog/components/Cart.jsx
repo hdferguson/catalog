@@ -99,6 +99,11 @@ const Cart = React.createClass ({
                      line_items={this.state.line_items} 
                      handleRemoveFromCart={this.handleRemoveFromCart} />
           <a className="btn btn-primary btn-xs"
+             onClick={this.handleCheckout} >
+            Checkout
+          </a>
+      
+          <a className="btn btn-primary btn-xs"
              onClick={this.handleEmptyCart} >
             Empty Cart
           </a>
