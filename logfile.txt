@@ -1,3 +1,27 @@
+commit 52e7026acd90e3cfbe4810ff40033b7f2750270c
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 22 21:40:53 2017 +0000
+
+    Done and it works. It sent an email.
+
+commit 5211b41dfaf51859dbbcace8cea7cc9922952e96
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 22 20:43:51 2017 +0000
+
+    Done with task G and it works.
+
+commit 8e2f2ccf89fad777baa23978a77d399b2d3cb5f6
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 22 20:17:36 2017 +0000
+
+    Done with G2.
+
+commit 45a26b5c3dd50d1bf483993ed5a598a57ca826bc
+Author: hdferguson <hdferguson@valdosta.edu>
+Date:   Wed Feb 22 05:01:20 2017 +0000
+
+    Done with G1.
+
 commit 10d4a5c74646ca8d3eb74de175f55e70abea1ec2
 Author: hdferguson <hdferguson@valdosta.edu>
 Date:   Thu Feb 16 23:37:25 2017 +0000
