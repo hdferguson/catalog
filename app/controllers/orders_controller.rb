@@ -4,26 +4,39 @@ class OrdersController < ApplicationController
   before_action :ensure_cart_isnt_empty, only: :new
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
+
+  def pundit_user
+    current_account
+  end
+  
+  
   # GET /orders
   # GET /orders.json
   def index
-    if (params[:buyer_id])
-      @buyer = Buyer.find(params[:buyer_id])
-      @orders = @buyer.orders.order('created_at desc').paginate(page: params[:page],per_page: 10)
-    else
-      @orders = Order.order('created_at desc').paginate(page: params[:page],per_page: 10)
-    end
+    #if (params[:buyer_id])
+     # @buyer = Buyer.find(params[:buyer_id])
+      #@orders = @buyer.orders.order('created_at desc').paginate(page: params[:page],per_page: 10)
+    #else
+     # @orders = Order.order('created_at desc').paginate(page: params[:page],per_page: 10)
+    #end
+    
+    authorize Order 
+    @orders = policy_scope(Order)
+
+    @orders = @orders.order('created_at desc').paginate(page: params[:page],per_page: 10) 
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
+    authorize @order
+    #@products = @order.products
   end
 
   # GET /orders/new
   def new
     @order = Order.new
-    
+    authorize @order
     if current_account && current_account.accountable_type == "Buyer"
         #@order.buyer = current_account.accountable
         @order.name     = current_account.accountable.name
@@ -40,12 +53,14 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
+    authorize @order
   end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    authorize @order
     @order.add_line_items_from_cart(@cart)
     
     if current_account && current_account.accountable_type == "Buyer"
@@ -70,6 +85,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    authorize @order
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
@@ -84,6 +100,7 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
+    authorize @order
     @order.destroy
     respond_to do |format|
       format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
