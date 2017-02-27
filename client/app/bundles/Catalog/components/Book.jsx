@@ -22,13 +22,15 @@ const Book = React.createClass ({
         <td>{this.props.book.title}</td>
         <td dangerouslySetInnerHTML={{__html: this.props.book.description}}></td>
         <td>{this.props.book.price}</td>
-        <td>{this.props.book.popularity}</td> 
-        <td>
-          <a className="btn btn-primary btn-xs"
-            onClick={this.handleAddToCart} >
-            Add to Cart
-          </a>
-        </td>
+        <td>{this.props.book.popularity}</td>
+        { this.props.seller ?  <td />: 
+          <td>
+            <a className="btn btn-primary btn-xs"
+              onClick={this.handleAddToCart} >
+              Add to Cart
+            </a>
+          </td>
+        }
       </tr>
     )
   }
