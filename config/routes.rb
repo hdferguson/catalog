@@ -20,6 +20,10 @@ Rails.application.routes.draw do
         get 'orders', to: 'line_items#show_orders_for_seller'
     end
 end
+
+resources :buyers do
+    resources :orders
+end
   
   resources :buyers, only: [:edit, :update]
   resources :sellers, only: [:edit, :update]
