@@ -4,6 +4,11 @@ class LineItemsController < ApplicationController
   before_action :set_line_item, only: [:show, :edit, :update, :destroy, :decrease]
   skip_before_filter :verify_authenticity_token
   
+  def pundit_user
+    current_account
+  end
+  
+  
   # GET /line_items
   # GET /line_items.json
   def index
@@ -39,7 +44,7 @@ class LineItemsController < ApplicationController
     products = seller.products
     @line_items = LineItem.where(product_id: products)
     products.each do |product|
-      logger.info(product)
+    logger.info(product)
     end
   end
   
