@@ -44,7 +44,11 @@ gem 'redis', '~>3.2'
 
 
 gem 'faker'
-gem 'will_paginate'
+
+#gem 'will_paginate'
+gem 'kaminari'
+gem 'bourbon'
+gem 'administrate'
 
 gem 'figaro'
 

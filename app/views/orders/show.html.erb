@@ -20,5 +20,39 @@
   <%= @order.pay_type %>
 </p>
 
+
+<div class="container">
+    <h3>Books Contained in This Order:</h3>
+    <table class="table table-striped">
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Nr. Copies</th>
+        <th>Unit Price</th>
+      </tr>
+
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= product.title %></td>
+            <% @total= 0 %>
+            <% product.line_items.each do |line_item| %>
+                <% if (@order.id == line_item.order_id)%>
+                    <% @total += line_item.quantity * product.price %>
+                    <td><%= line_item.quantity %></td>
+                <% end %>
+            <% end %>
+            <td><%= product.price %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Total:  $<%=@total%></td>
+        </tr>
+    </table>
+</div>
+
 <%= link_to 'Edit', edit_order_path(@order) %> |
 <%= link_to 'Back', orders_path %>

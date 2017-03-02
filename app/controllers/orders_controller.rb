@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: :new
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  
 
   def pundit_user
     current_account
@@ -23,14 +23,14 @@ class OrdersController < ApplicationController
     authorize Order 
     @orders = policy_scope(Order)
 
-    @orders = @orders.order('created_at desc').paginate(page: params[:page],per_page: 10) 
+    @orders = @orders.order('created_at desc').page params[:page]
   end
 
   # GET /orders/1
   # GET /orders/1.json
   def show
     authorize @order
-    #@products = @order.products
+    @products = @order.products
   end
 
   # GET /orders/new

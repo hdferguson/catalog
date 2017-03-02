@@ -1,4 +1,17 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :accounts
+resources :buyers
+resources :carts
+resources :line_items
+resources :orders
+resources :products
+resources :sellers
+resources :super_accounts
+
+    root to: "accounts#index"
+  end
+
   devise_for :accounts,  :controllers => { :registrations => 'registrations' }
   resources :orders
   get 'hello_world', to: 'hello_world#index'

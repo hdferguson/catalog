@@ -34,7 +34,8 @@ class LineItemsController < ApplicationController
   # GET /line_items/1.json
   
   def show_orders_for_seller
-    seller = Seller.find(params[:id])   
+    seller = Seller.find(params[:id]) 
+    authorize seller, :show_orders_for_seller?
     products = seller.products
     @line_items = LineItem.where(product_id: products)
     products.each do |product|
